@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { AuthService } from "auth0-js";
 
-class Login extends React.Component {
+class Login extends Component {
   state = {
     redirectToPreviousRoute: false
   };

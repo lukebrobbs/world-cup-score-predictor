@@ -4,13 +4,10 @@ import { login, logout, isLoggedIn } from "../../utils/AuthService";
 import "../App/App.css";
 
 class Nav extends Component {
-  componentDidMount() {
-    console.log("Updated");
-  }
-
   handleClick = () => {
     isLoggedIn() ? logout() : login();
   };
+
   render() {
     return (
       <nav className="navbar navbar-default">

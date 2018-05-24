@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "../../history/history";
 import Home from "../Home/Home";
 import Results from "../Results/Results";
 import Predictions from "../Predictions/Predictions";
@@ -7,13 +8,12 @@ import Login from "../Login/Login";
 import Callback from "../Callback";
 import Nav from "../Nav/Nav";
 import "./App.css";
-import { requireAuth } from "../../utils/AuthService";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <Router history={history}>
           <React.Fragment>
             <Nav />
             <Switch>
@@ -24,7 +24,7 @@ class App extends Component {
               <Route path="/predictions" component={Predictions} />
             </Switch>
           </React.Fragment>
-        </BrowserRouter>
+        </Router>
       </div>
     );
   }
