@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import history from "../../history/history";
 import { AuthService } from "auth0-js";
+import { login } from "../../utils/AuthService";
 
 class Login extends Component {
   state = {
     redirectToPreviousRoute: false
-  };
-
-  login = () => {
-    AuthService.authenticate(() => {
-      this.setState({ redirectToPreviousRoute: true });
-    });
   };
 
   render() {
@@ -24,7 +20,7 @@ class Login extends Component {
     return (
       <div>
         <p>You must log in to view the page at {from.pathname}</p>
-        <button onClick={this.login}>Log in</button>
+        <button onClick={() => login()}>Log in</button>
       </div>
     );
   }
