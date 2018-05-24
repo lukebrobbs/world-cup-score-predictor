@@ -21,9 +21,7 @@ class Nav extends Component {
             <Link to="/results">Results</Link>
           </li>
           <li>
-            <Link to={isLoggedIn() ? "/predictions" : "/login"}>
-              My Predictions
-            </Link>
+            <Link to={"/predictions"}>My Predictions</Link>
           </li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
