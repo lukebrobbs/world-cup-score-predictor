@@ -4,6 +4,13 @@ import { login, logout, isLoggedIn } from "../../utils/AuthService";
 import "../App/App.css";
 
 class Nav extends Component {
+  componentDidMount() {
+    console.log("Updated");
+  }
+
+  handleClick = () => {
+    isLoggedIn() ? logout() : login();
+  };
   render() {
     return (
       <nav className="navbar navbar-default">
@@ -17,17 +24,25 @@ class Nav extends Component {
             <Link to="/results">Results</Link>
           </li>
           <li>
-            {isLoggedIn() ? <Link to="/special">Celebrity Jokes</Link> : ""}
+            <Link to={isLoggedIn() ? "/predictions" : "/login"}>
+              My Predictions
+            </Link>
           </li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
           <li>
             {isLoggedIn() ? (
-              <button className="btn btn-danger log" onClick={() => logout()}>
+              <button
+                className="btn btn-danger log"
+                onClick={() => this.handleClick()}
+              >
                 Log out{" "}
               </button>
             ) : (
-              <button className="btn btn-info log" onClick={() => login()}>
+              <button
+                className="btn btn-info log"
+                onClick={() => this.handleClick()}
+              >
                 Log In
               </button>
             )}

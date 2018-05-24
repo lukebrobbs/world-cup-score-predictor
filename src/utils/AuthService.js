@@ -1,14 +1,14 @@
 import decode from "jwt-decode";
-// import { browserHistory } from "react-router";
 import auth0 from "auth0-js";
+import history from "../history/history";
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
 
 const CLIENT_ID = "UCJmrbfAZ4ZvFGvf88KqDWz4O2fFVRsv";
 const CLIENT_DOMAIN = "northcoders-news.eu.auth0.com";
 const REDIRECT = "http://localhost:3000/callback";
-const SCOPE = "YOUR_SCOPE";
-const AUDIENCE = "AUDIENCE_ATTRIBUTE";
+const SCOPE = "openid profile";
+const AUDIENCE = "www.worldcupscorepredictor.io";
 
 var auth = new auth0.WebAuth({
   clientID: CLIENT_ID,
@@ -27,7 +27,7 @@ export function login() {
 export function logout() {
   clearIdToken();
   clearAccessToken();
-  // browserHistory.push("/");
+  history.replace("/");
 }
 
 export function requireAuth(nextState, replace) {
@@ -75,15 +75,19 @@ export function isLoggedIn() {
 }
 
 function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
-  if (!token.exp) {
-    return null;
+  try {
+    const token = decode(encodedToken);
+    if (!token.exp) {
+      return null;
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(token.exp);
+
+    return date;
+  } catch (err) {
+    console.log(err);
   }
-
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
-
-  return date;
 }
 
 function isTokenExpired(token) {
