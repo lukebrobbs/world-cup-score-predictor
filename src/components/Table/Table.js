@@ -93,7 +93,9 @@ const Table = ({ teams, group }) => {
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">{group.name}</th>
+          <th scope="col" className="col-md-5">
+            {group.name}
+          </th>
           <th scope="col">P</th>
           <th scope="col">W</th>
           <th scope="col">D</th>

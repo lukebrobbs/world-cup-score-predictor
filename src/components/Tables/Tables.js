@@ -25,18 +25,12 @@ class Tables extends Component {
 
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-10">
-            {teams.map((team, i) => {
-              return (
-                <Table
-                  key={i}
-                  teams={team}
-                  group={data.data.groups[groups[i]]}
-                />
-              );
-            })}
-          </div>
+        <div className="well">
+          {teams.map((team, i) => {
+            return (
+              <Table key={i} teams={team} group={data.data.groups[groups[i]]} />
+            );
+          })}
         </div>
       </div>
     );
