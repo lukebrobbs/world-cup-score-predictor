@@ -90,7 +90,7 @@ import tableBuilder from "../../utils/tableBuilder";
 
 const Table = ({ teams, group }) => {
   return (
-    <table className="table">
+    <table className="table table-hover">
       <thead>
         <tr>
           <th scope="col" className="col-md-5">
