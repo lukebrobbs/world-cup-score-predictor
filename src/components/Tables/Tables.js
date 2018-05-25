@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Table from "../Table/Table";
+import tableBuilder from "../../utils/tableBuilder";
+import "./Tables.css";
 
 class Tables extends Component {
   state = {
@@ -18,12 +20,18 @@ class Tables extends Component {
 
   renderTeams = () => {
     const { data } = this.state;
+    const teams = tableBuilder.getGroups(data.data.teams);
+    const groups = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
     return (
-      <div>
-        {data.data.teams.map((team, i) => {
-          return <Table key={i} team={team} />;
-        })}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-10">
+            {teams.map((team, i) => {
+              return <Table key={i} teams={team} group={groups[i]} />;
+            })}
+          </div>
+        </div>
       </div>
     );
   };
