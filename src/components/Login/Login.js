@@ -8,8 +8,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <p>You must log in to view this page</p>
+      <div className="container text-center">
+        <h3>You must be logged in to view this page</h3>
         <button className="btn btn-info log" onClick={() => login()}>
           Log in
         </button>
