@@ -18,10 +18,21 @@ class Nav extends Component {
         </div>
         <ul className="nav navbar-nav">
           <li>
-            <Link to="/results">Results</Link>
+            <Link to="/matches">Matches</Link>
           </li>
           <li>
-            <Link to={"/predictions"}>My Predictions</Link>
+            <Link to="/tables">Tables</Link>
+          </li>
+          <li>
+            <Link to="/stats">Stats</Link>
+          </li>
+          <li>
+            <Link to={"/leaderboards"}>Leaderboards</Link>
+          </li>
+          <li>
+            {isLoggedIn() ? (
+              <Link to={"/predictions"}>My Predictions</Link>
+            ) : null}
           </li>
         </ul>
         <ul className="nav navbar-nav navbar-right">
