@@ -1,13 +1,13 @@
 import React from "react";
 import "./Table.css";
+import tableBuilder from "../../utils/tableBuilder";
 
 const Table = ({ teams, group }) => {
-  console.log(teams);
   return (
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">{`Group ${group}`}</th>
+          <th scope="col">{group.name}</th>
           <th scope="col">P</th>
           <th scope="col">W</th>
           <th scope="col">D</th>
@@ -21,7 +21,7 @@ const Table = ({ teams, group }) => {
       <tbody>
         <tr>
           <th scope="row">{`${teams[0].emojiString} ${teams[0].name}`}</th>
-          <td>0</td>
+          <td>{tableBuilder.getGamesPlayed(teams[0], group)}</td>
           <td>0</td>
           <td>0</td>
           <td>0</td>
@@ -32,7 +32,7 @@ const Table = ({ teams, group }) => {
         </tr>
         <tr>
           <th scope="row">{`${teams[1].emojiString} ${teams[1].name}`}</th>
-          <td>0</td>
+          <td>{tableBuilder.getGamesPlayed(teams[1], group)}</td>
           <td>0</td>
           <td>0</td>
           <td>0</td>
@@ -43,7 +43,7 @@ const Table = ({ teams, group }) => {
         </tr>
         <tr>
           <th scope="row">{`${teams[2].emojiString} ${teams[2].name}`}</th>
-          <td>0</td>
+          <td>{tableBuilder.getGamesPlayed(teams[2], group)}</td>
           <td>0</td>
           <td>0</td>
           <td>0</td>
@@ -54,7 +54,7 @@ const Table = ({ teams, group }) => {
         </tr>
         <tr>
           <th scope="row">{`${teams[3].emojiString} ${teams[3].name}`}</th>
-          <td>0</td>
+          <td>{tableBuilder.getGamesPlayed(teams[3], group)}</td>
           <td>0</td>
           <td>0</td>
           <td>0</td>

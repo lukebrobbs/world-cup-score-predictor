@@ -21,14 +21,20 @@ class Tables extends Component {
   renderTeams = () => {
     const { data } = this.state;
     const teams = tableBuilder.getGroups(data.data.teams);
-    const groups = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const groups = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-10">
             {teams.map((team, i) => {
-              return <Table key={i} teams={team} group={groups[i]} />;
+              return (
+                <Table
+                  key={i}
+                  teams={team}
+                  group={data.data.groups[groups[i]]}
+                />
+              );
             })}
           </div>
         </div>
