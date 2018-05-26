@@ -1,6 +1,7 @@
 import React from "react";
 import "./Table.css";
 import tableBuilder from "../../utils/tableBuilder";
+import { Table } from "react-bootstrap";
 
 // const testData = {
 //   name: "Group A",
@@ -88,9 +89,9 @@ import tableBuilder from "../../utils/tableBuilder";
 //   ]
 // };
 
-const Table = ({ teams, group }) => {
+const LeagueTable = ({ teams, group }) => {
   return (
-    <table className="table table-hover">
+    <Table hover>
       <thead>
         <tr>
           <th scope="col" className="col-md-5">
@@ -103,7 +104,9 @@ const Table = ({ teams, group }) => {
           <th scope="col">GF</th>
           <th scope="col">GA</th>
           <th scope="col">GD</th>
-          <th scope="col">Pts</th>
+          <th scope="col" dataField="points">
+            Pts
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -123,8 +126,8 @@ const Table = ({ teams, group }) => {
           );
         })}
       </tbody>
-    </table>
+    </Table>
   );
 };
 
-export default Table;
+export default LeagueTable;

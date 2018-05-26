@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Table from "../Table/Table";
+import LeagueTable from "../Table/Table";
 import tableBuilder from "../../utils/tableBuilder";
 import "./Tables.css";
 
@@ -28,7 +28,11 @@ class Tables extends Component {
         <div className="well">
           {teams.map((team, i) => {
             return (
-              <Table key={i} teams={team} group={data.data.groups[groups[i]]} />
+              <LeagueTable
+                key={i}
+                teams={team}
+                group={data.data.groups[groups[i]]}
+              />
             );
           })}
         </div>
