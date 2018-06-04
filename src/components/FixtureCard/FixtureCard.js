@@ -19,13 +19,17 @@ const FixtureCard = ({ match, teams, stadium }) => {
       }}
     >
       <div className="panel panel-body">
-        <div className="fixture">
-          <h4 className="homeTeam">{`${teams[0].name}`}</h4>
-          <div className="v">
+        <div className="fixture d-inline-block">
+          <h4 className="homeTeam">{`${teams[0].emojiString}${
+            teams[0].name
+          }`}</h4>
+          <h4 className="awayTeam">{`${teams[1].emojiString}${
+            teams[1].name
+          }`}</h4>
+          <div className="date">
             <h5 className="text-center">{date}</h5>
             <h5 className="text-center">{time}</h5>
           </div>
-          <h4 className="awayTeam">{`${teams[1].name}`}</h4>
           <h3 className="text-center">{match.home_result}</h3>
           <div />
           <h3 className="text-center">{match.away_result}</h3>
