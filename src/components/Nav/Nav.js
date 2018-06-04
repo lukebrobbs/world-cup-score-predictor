@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { login, logout, isLoggedIn } from "../../utils/AuthService";
 import "../App/App.css";
+import "../Nav/Nav.css";
 
 class Nav extends Component {
   handleClick = () => {
@@ -10,10 +11,17 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-inverse">
         <div className="navbar-header">
-          <Link className="navbar-brand" to="/">
-            World Cup Score Predictor
+          <Link className="navbar-left" to="/">
+            <img
+              className="logo"
+              height="75px"
+              src={
+                "https://fsprdcdnpublic.azureedge.net/global-pictures/tournaments-sq-4/254645_w"
+              }
+              alt="World Cup logo"
+            />
           </Link>
         </div>
         <ul className="nav navbar-nav">

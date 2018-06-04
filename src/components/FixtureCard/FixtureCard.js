@@ -8,31 +8,40 @@ const FixtureCard = ({ match, teams, stadium }) => {
   const date = moment(match.date).format("MMM DD");
   const time = moment(match.date).format("HH:00");
 
+  const dateJsx = (
+    <div className="date">
+      <h5 className="text-left">{date}</h5>
+      <h5 className="text-left">{time}</h5>
+    </div>
+  );
+
+  const scoreJsx = (
+    <div className="date">
+      <h5 className="text-left">{match.home_result}</h5>
+      <h5 className="text-left">{match.away_result}</h5>
+    </div>
+  );
   return (
     <div
       className="panel panel-default"
       style={{
         width: "40%",
         display: "inline-block",
-        marginLeft: "5%",
-        marginRight: "5%"
+        marginLeft: "3%",
+        marginRight: "3%"
       }}
     >
       <div className="panel panel-body">
-        <div className="fixture d-inline-block">
-          <h4 className="homeTeam">{`${teams[0].emojiString}${
-            teams[0].name
-          }`}</h4>
-          <h4 className="awayTeam">{`${teams[1].emojiString}${
-            teams[1].name
-          }`}</h4>
-          <div className="date">
-            <h5 className="text-center">{date}</h5>
-            <h5 className="text-center">{time}</h5>
+        <div className="grid d-inline-block">
+          <div>
+            <h5 className="homeTeam">{`${teams[0].emojiString}${
+              teams[0].name
+            }`}</h5>
+            <h5 className="awayTeam">{`${teams[1].emojiString}${
+              teams[1].name
+            }`}</h5>
           </div>
-          <h3 className="text-center">{match.home_result}</h3>
-          <div />
-          <h3 className="text-center">{match.away_result}</h3>
+          {match.home_result ? scoreJsx : dateJsx}
         </div>
       </div>
     </div>

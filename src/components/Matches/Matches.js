@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GroupFixtures from "../GroupFixtures/GroupFixtures";
 import axios from "axios";
+import "./Matches.css";
 
 class Matches extends Component {
   state = {
@@ -18,10 +19,9 @@ class Matches extends Component {
 
   renderMatches = () => {
     const { groups, teams, stadiums } = this.state.data;
-    console.log(this.state.data);
     const groupNames = Object.keys(groups);
     return (
-      <div>
+      <div className="fixtures">
         {groupNames.map((group, i) => {
           return (
             <GroupFixtures
@@ -29,7 +29,7 @@ class Matches extends Component {
               teams={teams}
               stadiums={stadiums}
               key={i}
-              style={{ display: "inline-block" }}
+              // style={{ display: "inline-block" }}
             />
           );
         })}
