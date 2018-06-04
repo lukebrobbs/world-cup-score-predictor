@@ -1,15 +1,15 @@
-import history from "../history";
+import history from "../history/history";
 import auth0 from "auth0-js";
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
     // the following three lines MUST be updated
-    domain: "bkrebs.auth0.com",
-    audience: "https://bkrebs.auth0.com/userinfo",
-    clientID: "3co4Cdt3h3x8En7Cj0s7Zg5FxhKOjeeK",
+    domain: "northcoders-news.eu.auth0.com",
+    audience: "www.worldcupscorepredictor.io",
+    clientID: "I65PE5PsSferqn9UVYrh5MxLl7fgSlYf",
     redirectUri: "http://localhost:3000/callback",
     responseType: "token",
-    scope: "openid"
+    scope: "openid profile"
   });
 
   constructor() {
@@ -17,7 +17,9 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
   }
+  userProfile;
 
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
@@ -59,5 +61,23 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
+  }
+  getAccessToken() {
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) {
+      throw new Error("No Access Token found");
+    }
+    return accessToken;
+  }
+
+  //...
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 }
