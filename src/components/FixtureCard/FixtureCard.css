@@ -1,0 +1,16 @@
+.fixture {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.fixture .homeTeam {
+  text-align: left;
+}
+
+.fixture .v {
+  text-align: center;
+}
+
+.fixture .awayTeam {
+  text-align: right;
+}
