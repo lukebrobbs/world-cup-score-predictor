@@ -1,16 +1,20 @@
 .fixture {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
 }
 
 .fixture .homeTeam {
   text-align: left;
+  margin: auto;
 }
 
 .fixture .v {
   text-align: center;
+  margin: auto;
 }
 
 .fixture .awayTeam {
   text-align: right;
+  margin: auto;
 }

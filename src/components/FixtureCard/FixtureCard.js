@@ -1,27 +1,34 @@
 import React, { Component } from "react";
 import "./FixtureCard.css";
+import * as moment from "moment";
 
-const FixtureCard = ({ match, teams }) => {
-  //   console.log(match);
+const FixtureCard = ({ match, teams, stadium }) => {
+  console.log(match);
   //   console.log(teams);
-  const playingTeams = teams.filter(
-    (team, i) => team.id === match.home_team || team.id === match.away_team
-  );
-  console.log(playingTeams);
+  const date = moment(match.date).format("MMM DD");
+  const time = moment(match.date).format("HH:00");
+
   return (
-    <div className="panel panel-default">
-      <div className="panel panel-heading">
-        <h4 className="text-center">{match.date}</h4>
-      </div>
+    <div
+      className="panel panel-default"
+      style={{
+        width: "40%",
+        display: "inline-block",
+        marginLeft: "5%",
+        marginRight: "5%"
+      }}
+    >
       <div className="panel panel-body">
         <div className="fixture">
-          <div className="homeTeam">{`${playingTeams[0].emojiString}  ${
-            playingTeams[0].name
-          }`}</div>
-          <div className="v">v</div>
-          <div className="awayTeam">{`${playingTeams[1].name}  ${
-            playingTeams[1].emojiString
-          }`}</div>
+          <h4 className="homeTeam">{`${teams[0].name}`}</h4>
+          <div className="v">
+            <h5 className="text-center">{date}</h5>
+            <h5 className="text-center">{time}</h5>
+          </div>
+          <h4 className="awayTeam">{`${teams[1].name}`}</h4>
+          <h3 className="text-center">{match.home_result}</h3>
+          <div />
+          <h3 className="text-center">{match.away_result}</h3>
         </div>
       </div>
     </div>

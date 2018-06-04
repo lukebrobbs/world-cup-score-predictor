@@ -17,12 +17,21 @@ class Matches extends Component {
   }
 
   renderMatches = () => {
-    const { groups, teams } = this.state.data;
+    const { groups, teams, stadiums } = this.state.data;
+    console.log(this.state.data);
     const groupNames = Object.keys(groups);
     return (
       <div>
         {groupNames.map((group, i) => {
-          return <GroupFixtures group={groups[group]} teams={teams} key={i} />;
+          return (
+            <GroupFixtures
+              group={groups[group]}
+              teams={teams}
+              stadiums={stadiums}
+              key={i}
+              style={{ display: "inline-block" }}
+            />
+          );
         })}
       </div>
     );

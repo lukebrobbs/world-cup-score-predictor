@@ -1,14 +1,28 @@
 import React from "react";
 import FixtureCard from "../FixtureCard/FixtureCard";
 
-const GroupFixtures = ({ group, teams }) => {
-  //   console.log(group, teams);
+const GroupFixtures = ({ group, teams, stadiums }) => {
+  // console.log(group, teams);
   return (
-    <div className={"panel panel-default"}>
-      <div className={"panel panel-heading"}>{group.name}</div>
+    <div className={"panel panel-info"} style={{ width: "50%" }}>
+      <div className={"panel panel-heading text-center"}>{group.name}</div>
       <div className={"panel panel-body"}>
         {group.matches.map((match, i) => {
-          return <FixtureCard key={i} match={match} teams={teams} />;
+          const playingTeams = teams.filter(
+            (team, i) =>
+              team.id === match.home_team || team.id === match.away_team
+          );
+          const stadium = stadiums.filter(stadium => {
+            return stadium.id === match.stadium;
+          });
+          return (
+            <FixtureCard
+              key={i}
+              match={match}
+              teams={playingTeams}
+              stadium={stadium}
+            />
+          );
         })}
       </div>
     </div>
