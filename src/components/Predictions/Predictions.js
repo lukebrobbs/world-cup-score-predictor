@@ -6,6 +6,7 @@ import db from "../fire";
 import LeagueTable from "../Table/Table";
 import tableBuilder from "../../utils/tableBuilder";
 import ScoreInput from "../ScoreInput/ScoreInput";
+import groups from "../../utils/matchPredictions";
 
 const newAuth = new Auth();
 
@@ -40,34 +41,44 @@ class Predictions extends Component {
     }
   }
 
+  handleClick = () => {
+    console.log("Clicked");
+  };
+  handleChange = (event, index) => {
+    const { predictions } = this.state;
+  };
+
   renderPredictions = () => {
     const { data } = this.state;
     const teams = tableBuilder.getGroups(data.teams);
-    const groups = ["a", "b", "c", "d", "e", "f", "g", "h"];
-    // console.log(teams);
+    const groupNames = ["a", "b", "c", "d", "e", "f", "g", "h"];
+
     return (
       <div>
         {teams.map((team, i) => {
           return (
-            <div className="container">
-              <div className="well">
+            <div className="container" key={i}>
+              <div className="well" key={i}>
                 <LeagueTable
                   key={i}
                   teams={team}
-                  group={data.groups[groups[i]]}
+                  group={groups[groupNames[i]]}
                 />
-                {data.groups[groups[i]].matches.map((match, i) => {
+                {data.groups[groupNames[i]].matches.map((match, i) => {
                   const playingTeams = data.teams.filter((team, i) => {
                     return (
                       team.id === match.home_team || team.id === match.away_team
                     );
                   });
-                  return <ScoreInput teams={playingTeams} />;
+                  return <ScoreInput teams={playingTeams} key={i + 1} />;
                 })}
               </div>
             </div>
           );
         })}
+        <button className="btn btn-primary" onClick={() => this.handleClick()}>
+          Submit
+        </button>
       </div>
     );
   };

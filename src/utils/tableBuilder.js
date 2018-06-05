@@ -123,20 +123,20 @@ const tableBuilder = {
       return 0;
     });
     const goalDifferenceSort = goalsForSort.sort((a, b) => {
-      if (a.goalDifference > b.goalDifference) {
+      if (a.goalDifference < b.goalDifference) {
         return 1;
       }
-      if (a.goalDifference < b.goalDifference) {
+      if (a.goalDifference > b.goalDifference) {
         return -1;
       }
       return 0;
     });
 
     return goalDifferenceSort.sort((a, b) => {
-      if (a.points > b.points) {
+      if (a.points < b.points) {
         return 1;
       }
-      if (a.points < b.points) {
+      if (a.points > b.points) {
         return -1;
       }
       return 0;
