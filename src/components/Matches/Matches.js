@@ -29,7 +29,6 @@ class Matches extends Component {
               teams={teams}
               stadiums={stadiums}
               key={i}
-              // style={{ display: "inline-block" }}
             />
           );
         })}
