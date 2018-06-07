@@ -75,11 +75,18 @@ class Predictions extends Component {
                   group={predictionData[groupNames[i]]}
                 />
                 {data.groups[groupNames[i]].matches.map((match, j) => {
-                  const playingTeams = data.teams.filter((team, i) => {
-                    return (
-                      team.id === match.home_team || team.id === match.away_team
-                    );
-                  });
+                  const playingTeams = data.teams.reduce(
+                    (acc, team) => {
+                      if (team.id === match.home_team) {
+                        acc.home = team;
+                      }
+                      if (team.id === match.away_team) {
+                        acc.away = team;
+                      }
+                      return acc;
+                    },
+                    { home: null, away: null }
+                  );
                   return (
                     <ScoreInput
                       teams={playingTeams}

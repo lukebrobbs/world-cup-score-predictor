@@ -14,11 +14,10 @@ class ScoreInput extends Component {
   };
   render() {
     const { teams, match, group } = this.props;
-    console.log(teams);
 
     return (
       <div>
-        <span>{`${teams[0].emojiString} ${teams[0].name}`}</span>
+        <span>{`${teams.home.emojiString} ${teams.home.name}`}</span>
         <input
           type="number"
           className="scoreInput"
@@ -37,7 +36,7 @@ class ScoreInput extends Component {
           maxLength={1}
           ref="Away"
         />
-        <span>{`${teams[1].name} ${teams[1].emojiString}`}</span>
+        <span>{`${teams.away.name} ${teams.away.emojiString}`}</span>
       </div>
     );
   }
