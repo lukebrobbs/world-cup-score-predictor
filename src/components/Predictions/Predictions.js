@@ -14,7 +14,8 @@ class Predictions extends Component {
   state = {
     profile: {},
     data: [],
-    predictions: []
+    predictions: [],
+    predictionData: groups
   };
 
   componentWillMount() {
@@ -47,12 +48,21 @@ class Predictions extends Component {
   handleChange = (event, index) => {
     const { predictions } = this.state;
   };
+  updatePredictionTable = (homeScore, awayScore, group, match) => {
+    const updatedPredictionData = { ...this.state.predictionData };
+
+    updatedPredictionData[group].matches[match].home_result = +homeScore;
+    updatedPredictionData[group].matches[match].away_result = +awayScore;
+    updatedPredictionData[group].matches[match].finished = true;
+
+    console.log(updatedPredictionData);
+    this.setState({ predictionData: updatedPredictionData });
+  };
 
   renderPredictions = () => {
-    const { data } = this.state;
+    const { data, predictionData } = this.state;
     const teams = tableBuilder.getGroups(data.teams);
     const groupNames = ["a", "b", "c", "d", "e", "f", "g", "h"];
-
     return (
       <div>
         {teams.map((team, i) => {
@@ -62,15 +72,23 @@ class Predictions extends Component {
                 <LeagueTable
                   key={i}
                   teams={team}
-                  group={groups[groupNames[i]]}
+                  group={predictionData[groupNames[i]]}
                 />
-                {data.groups[groupNames[i]].matches.map((match, i) => {
+                {data.groups[groupNames[i]].matches.map((match, j) => {
                   const playingTeams = data.teams.filter((team, i) => {
                     return (
                       team.id === match.home_team || team.id === match.away_team
                     );
                   });
-                  return <ScoreInput teams={playingTeams} key={i + 1} />;
+                  return (
+                    <ScoreInput
+                      teams={playingTeams}
+                      key={j + 1}
+                      group={groupNames[i]}
+                      match={j}
+                      updateTable={this.updatePredictionTable}
+                    />
+                  );
                 })}
               </div>
             </div>
@@ -85,7 +103,6 @@ class Predictions extends Component {
 
   render() {
     const { data } = this.state;
-
     return <div>{data.teams ? this.renderPredictions() : null}</div>;
   }
 }
