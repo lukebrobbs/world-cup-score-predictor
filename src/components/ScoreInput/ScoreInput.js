@@ -7,7 +7,6 @@ class ScoreInput extends Component {
     if (e.target.value.length === 1 && homeAway === "Home") {
       this.refs.Away.focus();
     }
-    console.log(this.refs.Home.value);
     if (this.refs.Home.value && this.refs.Away.value) {
       updateTable(this.refs.Home.value, this.refs.Away.value, group, match);
     }

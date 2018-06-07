@@ -13,10 +13,19 @@ const GroupFixtures = ({ group, teams, stadiums }) => {
       </div>
       <div className={"panel panel-body"}>
         {group.matches.map((match, i) => {
-          const playingTeams = teams.filter(
-            (team, i) =>
-              team.id === match.home_team || team.id === match.away_team
+          const playingTeams = teams.reduce(
+            (acc, team) => {
+              if (team.id === match.home_team) {
+                acc.home = team;
+              }
+              if (team.id === match.away_team) {
+                acc.away = team;
+              }
+              return acc;
+            },
+            { home: null, away: null }
           );
+
           const stadium = stadiums.filter(stadium => {
             return stadium.id === match.stadium;
           });

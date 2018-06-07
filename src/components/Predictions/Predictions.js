@@ -55,7 +55,6 @@ class Predictions extends Component {
     updatedPredictionData[group].matches[match].away_result = +awayScore;
     updatedPredictionData[group].matches[match].finished = true;
 
-    console.log(updatedPredictionData);
     this.setState({ predictionData: updatedPredictionData });
   };
 

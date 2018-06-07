@@ -3,8 +3,6 @@ import "./FixtureCard.css";
 import * as moment from "moment";
 
 const FixtureCard = ({ match, teams, stadium }) => {
-  console.log(match);
-  //   console.log(teams);
   const date = moment(match.date).format("MMM DD");
   const time = moment(match.date).format("HH:00");
 
@@ -34,11 +32,11 @@ const FixtureCard = ({ match, teams, stadium }) => {
       <div className="panel panel-body">
         <div className="grid d-inline-block">
           <div>
-            <h5 className="homeTeam">{`${teams[0].emojiString}${
-              teams[0].name
+            <h5 className="homeTeam">{`${teams.home.emojiString}${
+              teams.home.name
             }`}</h5>
-            <h5 className="awayTeam">{`${teams[1].emojiString}${
-              teams[1].name
+            <h5 className="awayTeam">{`${teams.away.emojiString}${
+              teams.away.name
             }`}</h5>
           </div>
           {match.home_result ? scoreJsx : dateJsx}
